@@ -1,0 +1,8 @@
+#a example file 
+example.py
+
+# virtual enviroment
+env
+
+#python cache CPython
+__pycache__
