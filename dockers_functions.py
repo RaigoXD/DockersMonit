@@ -1,7 +1,7 @@
 import docker
 
-
 class Dockers:
+
     def __init__(self):
         self.__client = docker.from_env()
 
@@ -10,14 +10,19 @@ class Dockers:
             containers = self.__client.containers.list(True)
         else:
             containers = self.__client.containers.list(True)[:num]
-
         info_containers = [
-            [container.short_id[:5], container.name, container.status.upper()]
+            [container.short_id, container.name, container.status.upper()]
             for container in containers
         ]
         return info_containers
 
-
-dockersito = Dockers()
-
-print(dockersito.list_containers())
+    def container_logs(self,short_id:int):
+        container = self.__client.containers.get(short_id)
+        container.reload()
+        return container.logs()
+    
+# dockersito = Dockers()
+# gen_logs = dockersito.container_logs("d4a64d953e3e")
+        
+# for i in gen_logs:
+#     print(i)
