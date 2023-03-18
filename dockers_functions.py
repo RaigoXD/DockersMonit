@@ -16,13 +16,34 @@ class Dockers:
         ]
         return info_containers
 
-    def container_logs(self,short_id:int):
+    def container_logs(self,short_id):
         container = self.__client.containers.get(short_id)
         container.reload()
-        return container.logs()
+        return container.logs(tail = 30)
     
-# dockersito = Dockers()
-# gen_logs = dockersito.container_logs("d4a64d953e3e")
+    def change_status_container(self,short_id, option: int):
+        container = self.__client.containers.get(short_id)
+        container.reload()
+        if option == 1 and container.status == 'running':
+            container.stop()
+        elif option == 2 and container.status == 'exited':
+            container.start()
+        elif option == 3 and container.status == 'running':
+            container.restart()
+            
+    def get_info_container(self, short_id):
+        container = self.__client.containers.get(short_id)
+        container.reload()
+        command = " ".join(container.attrs['Args'])
+
+        return (container.short_id, container.attrs['Config']['Image'],
+                container.status, container.attrs['Created'],
+                container.attrs['NetworkSettings']['Ports'], command
+                )
         
-# for i in gen_logs:
-#     print(i)
+
+
+# dockersito = Dockers()
+# info = dockersito.get_info_container("d4a64d953e3e")
+       
+# print(info)
