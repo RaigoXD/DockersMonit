@@ -8,16 +8,17 @@ from time import sleep
 from pynput import keyboard
 #display
 from display_functions import build_layout, MainDisplay, Dockers
+from display_functions import Commands,Containers, ContainersInfo,  Header, Logs 
 
 if __name__ == "__main__": 
     layout = build_layout()
     dockersito = Dockers()
     main_display = MainDisplay() 
-    layout["header"].update(main_display.Header())
-    layout["containers"].update(main_display.Containers(main_display))
-    layout["logs"].update(main_display.Logs(main_display))
-    layout["commands"].update(main_display.Commands())
-    layout["containers_info"].update(main_display.ContainersInfo(main_display))
+    layout["header"].update(Header())
+    layout["containers"].update(Containers(main_display))
+    layout["logs"].update(Logs(main_display))
+    layout["commands"].update(Commands())
+    layout["containers_info"].update(ContainersInfo(main_display))
 
     data = None
     with Live(layout, refresh_per_second=10, screen=False, vertical_overflow="fold"):
