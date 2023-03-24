@@ -43,10 +43,10 @@ To start, I recommend using the Python virtual environments to encapsulate the p
 > Note: I'm using linux - Ubuntu20.04
 
 ```sh
-How use it -> python3 -m venv <name>
+How to use it -> python3 -m venv <name>
 Python3 -m venv env    
 ```
-to active it:
+to activate it:
 ```sh
 source env/bin/activate    
 ```
