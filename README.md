@@ -50,7 +50,7 @@ to activate it:
 ```sh
 source env/bin/activate    
 ```
-having created the virtual environment, now you have to install all the dependencies in the file called requirements.txt for this run the following command
+having the virtual environment created, now you have to install all the dependencies in the file called requirements.txt, for this run the following command
 ```sh
 pip install -r requirements.txt   
 ```
